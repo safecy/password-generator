@@ -1,0 +1,70 @@
+---
+import '@/styles/globals.css'
+import Footer from '@/layouts/Footer.astro'
+import Header from '@/layouts/Header.astro'
+
+interface Props {
+	title: string
+	description: string
+	image?: string
+}
+
+const BASE_URL = import.meta.env.SITE
+
+let { title, description, image } = Astro.props
+
+image = image ? `${BASE_URL}${image}` : `${BASE_URL}/opengraph.png`
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Preconnect to improve font loading performance -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Sintony:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<noscript>
+			<link
+				rel="preload prefetch"
+				href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Sintony:wght@400;700&display=swap"
+				as="style"
+			/>
+		</noscript>
+
+		<!-- HTML Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+
+		<!-- Open Graph Meta Tags -->
+		<meta property="og:url" content={BASE_URL} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content={BASE_URL} />
+		<meta property="twitter:url" content={BASE_URL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
+	</head>
+	<body class="grainy-dark dark">
+		<Header />
+		<slot />
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,36 @@
+---
+import Logo from '@/assets/logo.png'
+import FluentEmojiSparklingHeart from '@/components/icon/FluentEmojiSparklingHeart.astro'
+import { Image } from 'astro:assets'
+---
+
+<header class="fixed top-0 z-40 w-full py-4 transition-all">
+	<div class="container flex h-14 items-center justify-between">
+		<a href="/" aria-label="Password Generator" class="flex items-center gap-2 font-heading">
+			<Image src={Logo} width={36} height={36} alt="Safecy Logo" class="h-9 w-9" />
+			<span>Password Generator</span>
+		</a>
+		<a
+			href="https://github.com/safecy/password-generator"
+			target="_blank"
+			aria-label="GitHub"
+			class="flex items-center gap-2 text-sm font-medium"
+		>
+			<span class="hidden md:inline">Star on GitHub</span>
+			<FluentEmojiSparklingHeart class="h-6 w-6" />
+		</a>
+	</div>
+</header>
+
+<style>
+	header.scrolled {
+		@apply border-b bg-background/75 py-0 shadow-sm backdrop-blur-sm;
+	}
+</style>
+
+<script>
+	window.addEventListener('scroll', () => {
+		const header = document.querySelector('header')!
+		header.classList.toggle('scrolled', window.scrollY > 20)
+	})
+</script>

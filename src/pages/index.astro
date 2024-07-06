@@ -1,0 +1,62 @@
+---
+import GenerateCard from '@/components/GenerateCard'
+import IcRoundCheck from '@/components/icon/IcRoundCheck.astro'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { advantages, features } from '@/data'
+import Layout from '@/layouts/Layout.astro'
+
+const TITLE = 'Generate Secure Passwords with Safecy Password Generator'
+const DESCRIPTION =
+	"Generate strong and customizable passwords with Safecy's Password Generator. Customize password length and character types for enhanced online security. Protect your accounts with unique, complex passwords."
+---
+
+<Layout title={TITLE} description={DESCRIPTION}>
+	<main class="container mt-16 md:mt-8 lg:mt-0">
+		<section class="grid min-h-screen grid-cols-1 items-center gap-8 py-12 md:py-24 lg:grid-cols-2 lg:py-32">
+			<div class="flex flex-col items-center space-y-8 lg:items-start">
+				<h1 class="text-3xl font-bold md:text-4xl">Password Generator</h1>
+				<p class="text-center text-base text-muted-foreground md:text-lg lg:text-left">
+					Generate a secure and random password with customizable options. Use it for your online accounts, apps, or any
+					other purpose that requires a strong password.
+				</p>
+				<ul class="flex flex-col space-y-2">
+					{
+						features.map((feature) => (
+							<li class="flex gap-2">
+								<IcRoundCheck class="min-h-5 min-w-5 text-primary" />
+								<div class="space-y-1">
+									<h2 class="flex items-center gap-2 text-lg font-semibold">{feature.title}</h2>
+									<p class="text-sm text-muted-foreground">{feature.description}</p>
+								</div>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+			<div>
+				<GenerateCard client:only="react" />
+			</div>
+		</section>
+		<section class="flex flex-col space-y-8 py-12 text-center md:py-24 lg:py-32">
+			<h2 class="text-2xl font-bold lg:text-3xl">Why Use a Password Generator?</h2>
+			<p class="text-base text-muted-foreground md:text-lg">
+				Using a password generator is the best way to create strong, unique passwords for your online accounts. This
+				helps protect your personal information and reduces the risk of your accounts being compromised.
+			</p>
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+				{
+					advantages.map((advantage) => (
+						<Card>
+							<CardHeader>
+								<CardTitle>{advantage.title}</CardTitle>
+							</CardHeader>
+							<CardContent>
+								<CardDescription>{advantage.description}</CardDescription>
+							</CardContent>
+						</Card>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</Layout>

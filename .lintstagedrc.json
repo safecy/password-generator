@@ -1,0 +1,4 @@
+{
+	"**/*.(md|mdx)": ["prettier --write"],
+	"**/*.(js|jsx|ts|tsx|astro)": ["prettier --write", "eslint --fix"]
+}
